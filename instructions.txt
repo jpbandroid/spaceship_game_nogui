@@ -1,0 +1,9 @@
+SPACE STATION INSTRUCTIONS (subject to revision in future updates)
+
+- When you are in a module, you can choose what you want to do from the values:
+        MOVE or M - lets you move to a different module in the space station
+        SCANNER or S - allows you to search for aliens and lock modules (not implemented yet)
+        LOAD or L - allows you to load game instructions
+        STORY or S - allows you to read the backstory of the game
+
+- More features coming soon...
