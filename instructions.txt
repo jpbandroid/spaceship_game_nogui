@@ -6,4 +6,6 @@ SPACE STATION INSTRUCTIONS (subject to revision in future updates)
         LOAD or L - allows you to load game instructions
         STORY or S - allows you to read the backstory of the game
 
+- The locations of the Main Alien NPC, Information Panels and Ventilation shafts are shown at the top of the program, underneath the game title and version info.
+
 - More features coming soon...
