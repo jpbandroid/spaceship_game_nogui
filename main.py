@@ -57,6 +57,27 @@ def output_moves():
                 print(move, '| ', end='')
         print()
 
+#Spawns the NPC aliens
+def spawn_npcs():
+        global num_modules, main_npc, vent_shafts, info_panels, npc_worker
+        module_set = []
+        for counter in range(2, num_modules + 1):
+                module_set.append(counter)
+        random.shuffle(module_set)
+        i = 0
+        main_npc = module_set[i]
+        for counter in range(0,3):
+                i = i+1
+                vent_shafts.append(module_set[i])
+
+        for counter in range(0,2):
+                i = i+1
+                info_panels.append(module_set[i])
+
+        for counter in range(0,3):
+                i = i+1
+                workers.append(module_set[i])
+
 #Gets action of the user
 def get_action():
         global module, last_module, possible_moves
@@ -92,6 +113,13 @@ def get_action():
 
 #Main program starts here
 
+print('Space Station Game version 1.1\n21/02/2023\nLoad instructions using LOAD command...\n')
+
+spawn_npcs()
+print("Main Alien NPC is located in module: " , main_npc)
+print("(sus) vents are located in modules: " , vent_shafts)
+print("Info panels are located in modules: " , info_panels)
+print("Worker NPC are located in modules:", workers)
 while alive and not won:
         load_module()
         if won == False and alive == True:
@@ -99,6 +127,6 @@ while alive and not won:
                 get_action()
 
 if won == True:
-        print("The queen is trapped and you burn it to death with your flamethrower.\nGame over. You win!")
+        print("The Main Alien NPC is trapped and you burn it to death with your flamethrower.\nGame over. You win!")
 if alive == False:
         print("The station has run out of power. Unable to sustain life support, you die.")
