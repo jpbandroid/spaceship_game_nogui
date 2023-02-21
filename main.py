@@ -113,7 +113,7 @@ def get_action():
 
 #Main program starts here
 
-print('Space Station Game version 1.1\n21/02/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 1.1.1\n21/02/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
@@ -125,8 +125,16 @@ while alive and not won:
         if won == False and alive == True:
                 output_moves()
                 get_action()
+        if module == main_npc:
+                print("You are in the same module as the Main Alien NPC (Telium)")
+        elif module == vent_shafts:
+                print("You are inside a vent shaft. (sus...)")
+        elif module == info_panels:
+                print("You are inside a module with an info panel.")
+        elif module == workers:
+                print("You are in the same module as worker NPC.")
 
 if won == True:
-        print("The Main Alien NPC is trapped and you burn it to death with your flamethrower.\nGame over. You win!")
+        print("The Main Alien NPC is trapped and you burn it to death/destroy it with your flamethrower.\nGame over. You win!")
 if alive == False:
         print("The station has run out of power. Unable to sustain life support, you die.")
