@@ -47,6 +47,14 @@ def output_module():
         print()
         print("You are in module", module)
         print()
+        if module == main_npc:
+                        print("You are in the same module as the Main Alien NPC (Telium)")
+        elif module == vent_shafts[0] or module == vent_shafts[1] or module == vent_shafts[2]:
+                print("You are inside a vent shaft. (sus...)")
+        elif module == info_panels[0] or module == info_panels[1]:
+                print("You are inside a module with an info panel.")
+        elif module == workers[0] or module == workers[1] or module == workers[2]:
+                print("You are in the same module as worker NPC.")
 
 #Outputs to the user where they can move
 def output_moves():
@@ -113,7 +121,7 @@ def get_action():
 
 #Main program starts here
 
-print('Space Station Game version 1.1.1\n21/02/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 1.1.2\n22/02/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
@@ -125,14 +133,6 @@ while alive and not won:
         if won == False and alive == True:
                 output_moves()
                 get_action()
-        if module == main_npc:
-                print("You are in the same module as the Main Alien NPC (Telium)")
-        elif module == vent_shafts:
-                print("You are inside a vent shaft. (sus...)")
-        elif module == info_panels:
-                print("You are inside a module with an info panel.")
-        elif module == workers:
-                print("You are in the same module as worker NPC.")
 
 if won == True:
         print("The Main Alien NPC is trapped and you burn it to death/destroy it with your flamethrower.\nGame over. You win!")
