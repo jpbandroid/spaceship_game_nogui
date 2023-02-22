@@ -86,6 +86,18 @@ def spawn_npcs():
                 i = i+1
                 workers.append(module_set[i])
 
+def check_vent_shafts():
+        global num_modules, module, vent_shafts, fuel
+        if module in vent_shafts:
+                print("There is a bank of fuel cells here\nYour player has loaded some into its flamethrower...")
+                fuel_gained = 50
+                print('Fuel was', fuel, 'fuel is now', fuel + fuel_gained)
+                fuel = fuel + fuel_gained
+                print('Vent shafts have closed.\nMoving down the vent shaft...')
+                last_module = module
+                module = random.randint(1, num_modules)
+                load_module()
+                
 #Gets action of the user
 def get_action():
         global module, last_module, possible_moves
@@ -121,7 +133,7 @@ def get_action():
 
 #Main program starts here
 
-print('Space Station Game version 1.1.2\n22/02/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 1.2.0\n22/02/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
@@ -130,6 +142,7 @@ print("Info panels are located in modules: " , info_panels)
 print("Worker NPC are located in modules:", workers)
 while alive and not won:
         load_module()
+        check_vent_shafts()
         if won == False and alive == True:
                 output_moves()
                 get_action()
