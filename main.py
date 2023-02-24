@@ -98,6 +98,18 @@ def check_vent_shafts():
                 last_module = module
                 module = random.randint(1, num_modules)
                 load_module()
+
+def lock():
+        global num_modules, power, locked
+        new_lock = int(input('Enter module to lock:\n'))
+        if new_lock < 0 or new_lock > num_modules:
+                print("Invalid module. Operation failed.")
+        elif new_lock == main_npc:
+                print("Operation failed. Unable to lock module.")
+        else:
+                locked = new_lock
+                print("NPCs cannot enter module", locked)
+        power_used = 25 + 5 * random.randint(0,5)
                 
 #Gets action of the user
 def get_action():
@@ -114,6 +126,10 @@ def get_action():
                                 module = move
                         else:
                                 print("The module must be connected to the current module.")
+                elif action.upper() == "SCANNER" or action.lower() == "s":
+                        command = input("Scanner ready. Enter command\nCommands available: LOCK\n")
+                        if command.upper() == "LOCK" or command.lower == "l":
+                                lock()
                 elif action.upper() == "LOAD" or action.lower() == "l":
                         print("loading instructions...\n")
                         time.sleep(1)
@@ -134,7 +150,7 @@ def get_action():
 
 #Main program starts here
 
-print('Space Station Game version 1.2.0\n22/02/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 1.3.0\n24/02/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
