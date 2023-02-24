@@ -134,14 +134,14 @@ def get_action():
                                 lock()
                         elif command.upper() == "POWER" or command.lower == "p":
                                 print("Current power of the ship:", power)
-                        
+                
                 elif action.upper() == "LOAD" or action.lower() == "l":
                         print("loading instructions...\n")
                         time.sleep(1)
                         text_file = open("instructions.txt", "r")
                         print(text_file.read())
                         text_file.close()
-                        time.sleep(15)
+                        #time.sleep(15)
                         valid_action = False
                 elif action.upper() == "STORY" or action.lower() == "s":
                         print("loading story...\n")
@@ -150,7 +150,7 @@ def get_action():
                         
                         print(text_file.read())
                         text_file.close()
-                        time.sleep(15)
+                        #time.sleep(15)
                         valid_action = False
 
 #Main program starts here
