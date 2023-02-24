@@ -86,6 +86,7 @@ def spawn_npcs():
                 i = i+1
                 workers.append(module_set[i])
 
+#Checks the ventilation shafts
 def check_vent_shafts():
         global num_modules, module, vent_shafts, fuel
         if module in vent_shafts:
