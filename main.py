@@ -112,7 +112,53 @@ def lock():
                 print("NPCs cannot enter module", locked)
         power_used = 25 + 5 * random.randint(0,5)
         power = power - power_used
-                
+
+def move_mainNPC():
+        global num_modules, module, last_module, locked, main_npc, won, vent_shafts
+        #If player is in the same module as the Main Alien NPC, this code is run
+        if module == main_npc:
+                print("There it is! The Main Alien NPC is in this module...")
+                #Decide how many moves the Main Alien NPC should take
+                moves_to_make = random.randint(1,3)
+                can_move_to_last_module = False
+                while moves_to_make > 0:
+                        #Get escape paths the Main Alien NPC can make
+                        escapes = get_modules_from(main_npc)
+                        #Remove the current module as an escape route
+                        if module in escapes:
+                                escapes.remove(module)
+                        #Allow the Main Alien NPC to double back behind the player from another module
+                        if last_module in escapes and can_move_to_last_module == False:
+                                escapes.remove(last_module)
+                        #Remove a module that is locked from the escape list
+                        if locked in escapes:
+                                escapes.remove(locked)
+                        #If there is no escape for the Main Alien NPC, the player has won!!
+                        if len(escapes) == 0:
+                                won = True
+                                moves_to_make = 0
+                                print("... and the door is locked. The Main Alien NPC is trapped.")
+        else:
+                if moves_to_make == 1:
+                        print("... and has escaped.")
+                main_npc = random.choice(escapes)
+                moves_to_make = moves_to_make - 1
+                can_move_to_last_module = True
+                #Handle the Main Alien NPC being in a module with a vent shaft
+                while main_npc in vent_shafts:
+                        if moves_to_make > 1:
+                                print("... and has escaped.")
+                        print("We can hear scuttling in the vent shafts...\nI think the alien is sus...")
+                        valid_move = False
+                        #The Main Alien NPC is unable to land in a module with another (sus) vent shaft...
+                        while valid_move == False:
+                                valid_move = True
+                                main_npc = random.randint(1, num_modules)
+                                if main_npc in vent_shafts:
+                                        valid_move = False
+                        #The Main Alien NPC always stops moving after travelling through the (sus) vent shaft
+                        moves_to_make = 0
+                        
 #Gets action of the user
 def get_action():
         global module, last_module, possible_moves
@@ -155,7 +201,7 @@ def get_action():
 
 #Main program starts here
 
-print('Space Station Game version 1.3.1\n24/02/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 2.0.0\n01/03/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
@@ -165,6 +211,7 @@ print("Worker NPC are located in modules:", workers)
 while alive and not won:
         load_module()
         check_vent_shafts()
+        move_mainNPC()
         if won == False and alive == True:
                 output_moves()
                 get_action()
