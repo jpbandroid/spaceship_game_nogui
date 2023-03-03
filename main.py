@@ -112,10 +112,53 @@ def lock():
                 print("NPCs cannot enter module", locked)
         power_used = 25 + 5 * random.randint(0,5)
         power = power - power_used
+                        
+#Gets action of the user
+def get_action():
+        global module, last_module, possible_moves
+        valid_action = False
+        while valid_action == False:
+                print("What do you want to do next? (MOVE, SCANNER, LOAD, or STORY)")
+                action = input(">")
+                if action.upper() == "MOVE" or action.lower() == "m":
+                        move = int(input("Enter the module to move to: "))
+                        if move in possible_moves:
+                                valid_action = True
+                                last_module = module
+                                module = move
+                        else:
+                                print("The module must be connected to the current module.")
+                elif action.upper() == "SCANNER" or action.lower() == "s-c":
+                        command = input("Scanner ready. Enter command\nCommands available: LOCK\n")
+                        if command.upper() == "LOCK" or command.lower == "l":
+                                lock()
+                        elif command.upper() == "POWER" or command.lower == "p":
+                                print("Current power of the ship:", power)
+                
+                elif action.upper() == "LOAD" or action.lower() == "l":
+                        print("loading instructions...\n")
+                        time.sleep(1)
+                        text_file = open("instructions.txt", "r")
+                        print(text_file.read())
+                        text_file.close()
+                        #time.sleep(15)
+                        valid_action = False
+                elif action.upper() == "STORY" or action.lower() == "s-t":
+                        print("loading story...\n")
+                        time.sleep(1)
+                        text_file = open("story.txt", "r")
+                        
+                        print(text_file.read())
+                        text_file.close()
+                        #time.sleep(15)
+                        valid_action = False
 
+#Movement logic for the Main Alien NPC
 def move_mainNPC():
-        global num_modules, module, last_module, locked, main_npc, won, vent_shafts
+        global num_modules, module, last_module, locked, main_npc, won, vent_shafts, moves_to_make
         #If player is in the same module as the Main Alien NPC, this code is run
+        escapes = [0]
+        moves_to_make = random.randint(1,3)
         if module == main_npc:
                 print("There it is! The Main Alien NPC is in this module...")
                 #Decide how many moves the Main Alien NPC should take
@@ -146,8 +189,8 @@ def move_mainNPC():
                 can_move_to_last_module = True
                 #Handle the Main Alien NPC being in a module with a vent shaft
                 while main_npc in vent_shafts:
-                        if moves_to_make > 1:
-                                print("... and has escaped.")
+                        #if moves_to_make > 1:
+                                #print("... and has escaped.")
                         print("We can hear scuttling in the vent shafts...\nI think the alien is sus...")
                         valid_move = False
                         #The Main Alien NPC is unable to land in a module with another (sus) vent shaft...
@@ -158,50 +201,10 @@ def move_mainNPC():
                                         valid_move = False
                         #The Main Alien NPC always stops moving after travelling through the (sus) vent shaft
                         moves_to_make = 0
-                        
-#Gets action of the user
-def get_action():
-        global module, last_module, possible_moves
-        valid_action = False
-        while valid_action == False:
-                print("What do you want to do next? (MOVE, SCANNER, LOAD, or STORY)")
-                action = input(">")
-                if action.upper() == "MOVE" or action.lower() == "m":
-                        move = int(input("Enter the module to move to: "))
-                        if move in possible_moves:
-                                valid_action = True
-                                last_module = module
-                                module = move
-                        else:
-                                print("The module must be connected to the current module.")
-                elif action.upper() == "SCANNER" or action.lower() == "s":
-                        command = input("Scanner ready. Enter command\nCommands available: LOCK\n")
-                        if command.upper() == "LOCK" or command.lower == "l":
-                                lock()
-                        elif command.upper() == "POWER" or command.lower == "p":
-                                print("Current power of the ship:", power)
-                
-                elif action.upper() == "LOAD" or action.lower() == "l":
-                        print("loading instructions...\n")
-                        time.sleep(1)
-                        text_file = open("instructions.txt", "r")
-                        print(text_file.read())
-                        text_file.close()
-                        #time.sleep(15)
-                        valid_action = False
-                elif action.upper() == "STORY" or action.lower() == "s":
-                        print("loading story...\n")
-                        time.sleep(1)
-                        text_file = open("story.txt", "r")
-                        
-                        print(text_file.read())
-                        text_file.close()
-                        #time.sleep(15)
-                        valid_action = False
 
 #Main program starts here
 
-print('Space Station Game version 2.0.0\n01/03/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 2.1.0\n03/03/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
