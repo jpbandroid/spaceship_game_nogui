@@ -5,7 +5,7 @@ import time
 
 #Global Variables
 
-num_modules = 17        #The number of modules in the space station
+num_modules = 20        #The number of modules in the space station
 module = 1              #The module of the space station we are in
 last_module = 0         #The last module we were in
 possible_moves = []     #List of the possible moves we can make
@@ -153,6 +153,15 @@ def get_action():
                         #time.sleep(15)
                         valid_action = False
 
+def intuition():
+        global possible_moves, workers, vent_shafts
+        #Check what is in each of the possible moves
+        for connected_module in possible_moves:
+                if connected_module in workers:
+                        print("I can hear something scuttling!")
+                if connected_module in vent_shafts:
+                        print("I can feel cold air!")
+
 #Movement logic for the Main Alien NPC
 def move_mainNPC():
         global num_modules, module, last_module, locked, main_npc, won, vent_shafts, moves_to_make
@@ -218,6 +227,7 @@ while alive and not won:
         if won == False and alive == True:
                 output_moves()
                 get_action()
+                intuition()
 
 if won == True:
         print("The Main Alien NPC is trapped and you burn it to death/destroy it with your flamethrower.\nGame over. You win!")
