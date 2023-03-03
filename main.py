@@ -153,6 +153,7 @@ def get_action():
                         #time.sleep(15)
                         valid_action = False
 
+#Intuition functionality
 def intuition():
         global possible_moves, workers, vent_shafts
         #Check what is in each of the possible moves
@@ -161,6 +162,21 @@ def intuition():
                         print("I can hear something scuttling!")
                 if connected_module in vent_shafts:
                         print("I can feel cold air!")
+
+def worker_aliens():
+        global module, workers, fuel, alive
+        #Output if Worker NPC encountered
+        if module in workers:
+                print("Startled, a Worker NPC scuttles across the floor.\nIt turns and leaps towards you...")
+                #Get the player's action
+                succesful_attack = False
+                while succesful_attack == False:
+                        print("You can:\n- Short blast your flamethrower to frighten it away.\n- Long blast your flamethrower to try to erase it.\nHow will you react? (S,L)")
+                        action = 0
+                        while action not in ("S", "L"):
+                                action = input("Press the trigger: ")
+                        fuel_used = int(input("How much fuel will you use? ..."))
+                        fuel = fuel - fuel_used
 
 #Movement logic for the Main Alien NPC
 def move_mainNPC():
@@ -213,7 +229,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Space Station Game version 2.1.0\n03/03/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 2.2.0\n03/03/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
