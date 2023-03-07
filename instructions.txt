@@ -1,11 +1,14 @@
-SPACE STATION INSTRUCTIONS (subject to revision in future updates)
+SPACESHIP GAME INSTRUCTIONS (subject to revision in future updates)
 
 - When you are in a module, you can choose what you want to do from the values:
         MOVE or M - lets you move to a different module in the space station
-        SCANNER or S - allows you to search for aliens and lock modules (not implemented yet)
-        LOAD or L - allows you to load game instructions
+        SCANNER or S - allows you to search for aliens and lock modules
+        INSTRUCTIONS or I - allows you to load game instructions
         STORY or S - allows you to read the backstory of the game
 
 - The locations of the Main Alien NPC, Information Panels and Ventilation shafts are shown at the top of the program, underneath the game title and version info.
+- +50 extra power is added to your weapon when you enter a ventilation shaft
+- The Main Alien NPC moves randomly around the spaceship, and to trap it, lock all exits that the NPC can escape out of
 
 - More features coming soon...
+- Windows .exe version coming soon...
