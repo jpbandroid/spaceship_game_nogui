@@ -177,6 +177,28 @@ def worker_aliens():
                                 action = input("Press the trigger: ")
                         fuel_used = int(input("How much fuel will you use? ..."))
                         fuel = fuel - fuel_used
+                        #Check if player has run out of fuel
+                        if fuel <= 0:
+                                alive = False
+                                return
+                        #Work out how much fuel is needed
+                        if action == "S":
+                                fuel_needed = 30 + 10 * random.randint(0,5)
+                        if action == "L":
+                                fuel_needed = 90 + 10 * random.randint(0,5)
+                        #Try again if not enough fuel was used
+                        if fuel_used >= fuel_needed:
+                                successful_attack = True
+                        else:
+                                print("The alien squeals but is not dead. It's angry.")
+                #Successful action
+                if action == "S":
+                        print("The alien scuttles away into the corner of the room.")
+                if action == "L":
+                        print("The alien has been destroyed.")
+                        #Remove it from the module
+                        workers.remove(module)
+                print()
 
 #Movement logic for the Main Alien NPC
 def move_mainNPC():
@@ -229,7 +251,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Space Station Game version 2.2.0\n03/03/2023\nLoad instructions using LOAD command...\n')
+print('Space Station Game version 2.3.0\n07/03/2023\nLoad instructions using LOAD command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
@@ -240,6 +262,7 @@ while alive and not won:
         load_module()
         check_vent_shafts()
         move_mainNPC()
+        worker_aliens()
         if won == False and alive == True:
                 output_moves()
                 get_action()
