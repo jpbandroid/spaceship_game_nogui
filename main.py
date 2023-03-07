@@ -11,7 +11,7 @@ last_module = 0         #The last module we were in
 possible_moves = []     #List of the possible moves we can make
 alive = True            #Whether the player is alive or dead
 won = False             #Whether the player has won
-power = 100             #The amount of power the spaceship has
+power = 500             #The amount of power the spaceship has
 fuel = 500              #The amount of fuel the player has in the flamethrower
 locked = 0              #The module that has been locked by the player
 queen = 0               #Location of the queen
@@ -252,7 +252,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Spaceship Game version 2.3.4\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
+print('Spaceship Game version 2.3.5\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
