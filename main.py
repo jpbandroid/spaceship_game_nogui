@@ -91,7 +91,7 @@ def check_vent_shafts():
         global num_modules, module, vent_shafts, fuel
         if module in vent_shafts:
                 print("There is a bank of fuel cells here\nYour player has loaded some into its flamethrower...")
-                fuel_gained = 50
+                fuel_gained = random.randint(50, 100)
                 print('Fuel was', fuel, 'fuel is now', fuel + fuel_gained)
                 fuel = fuel + fuel_gained
                 print('Vent shafts have closed.\nMoving down the vent shaft...')
@@ -163,6 +163,7 @@ def intuition():
                 if connected_module in vent_shafts:
                         print("I can feel cold air!")
 
+#Movement of Worker Aliens
 def worker_aliens():
         global module, workers, fuel, alive
         #Output if Worker NPC encountered
@@ -251,7 +252,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Spaceship Game version 2.3.3\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
+print('Spaceship Game version 2.3.4\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
