@@ -5,13 +5,13 @@ import time
 
 #Global Variables
 
-num_modules = 20        #The number of modules in the space station
-module = 1              #The module of the space station we are in
+num_modules = 20        #The number of modules in the spaceship
+module = 1              #The module of the spaceship we are in
 last_module = 0         #The last module we were in
 possible_moves = []     #List of the possible moves we can make
 alive = True            #Whether the player is alive or dead
 won = False             #Whether the player has won
-power = 100             #The amount of power the space station has
+power = 100             #The amount of power the spaceship has
 fuel = 500              #The amount of fuel the player has in the flamethrower
 locked = 0              #The module that has been locked by the player
 queen = 0               #Location of the queen
@@ -21,7 +21,7 @@ workers = []            #Location of the workers/NPCs
 
 #Procedure/Function declarations
 
-#Loads space station module data
+#Loads spaceship's module data
 def load_module():
         global module, possible_moves
         possible_moves = get_modules_from(module)
@@ -30,7 +30,7 @@ def load_module():
 #Gets modules the player can move to
 def get_modules_from(module):
         moves = []
-        text_file = open("Charles_Darwin/module" + str(module) + ".txt", "r")
+        text_file = open("spaceship/module" + str(module) + ".txt", "r")
         for counter in range(0,4):
                 move_read = text_file.readline()
                 move_read = int(move_read.strip())
@@ -135,7 +135,7 @@ def get_action():
                         elif command.upper() == "POWER" or command.lower == "p":
                                 print("Current power of the ship:", power)
                 
-                elif action.upper() == "LOAD" or action.lower() == "l":
+                elif action.upper() == "INSTRUCTIONS" or action.lower() == "i":
                         print("loading instructions...\n")
                         time.sleep(1)
                         text_file = open("instructions.txt", "r")
@@ -251,7 +251,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Space Station Game version 2.3.0\n07/03/2023\nLoad instructions using LOAD command...\n')
+print('Spaceship Game version 2.3.1\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
