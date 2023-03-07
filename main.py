@@ -118,7 +118,7 @@ def get_action():
         global module, last_module, possible_moves
         valid_action = False
         while valid_action == False:
-                print("What do you want to do next? (MOVE, SCANNER, LOAD, or STORY)")
+                print("What do you want to do next? (MOVE, SCANNER, INSTRUCTIONS, or STORY)")
                 action = input(">")
                 if action.upper() == "MOVE" or action.lower() == "m":
                         move = int(input("Enter the module to move to: "))
@@ -251,7 +251,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Spaceship Game version 2.3.1\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
+print('Spaceship Game version 2.3.2\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
