@@ -270,7 +270,7 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Spaceship Game version 2.4.2\n08/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
+print('Spaceship Game version 3.0 beta 1\n08/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
