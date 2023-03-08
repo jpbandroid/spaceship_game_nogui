@@ -6,9 +6,10 @@ SPACESHIP GAME INSTRUCTIONS (subject to revision in future updates)
         INSTRUCTIONS or I - allows you to load game instructions
         STORY or S - allows you to read the backstory of the game
 
-- The locations of the Main Alien NPC, Information Panels and Ventilation shafts are shown at the top of the program, underneath the game title and version info.
-- +50 extra power is added to your weapon when you enter a ventilation shaft
+- The locations of the Main Alien NPC, Information Panels, Ventilation shafts and Feul cells are shown at the top of the program, underneath the game title and version info.
+- +50 to +100 extra power (random amount) is added to your weapon when you enter a ventilation shaft
+- +10 to +50 extra power (random amount) is added to your weapon when you enter a module with a fuel canister/fuel cell
 - The Main Alien NPC moves randomly around the spaceship, and to trap it, lock all exits that the NPC can escape out of
 
 - More features coming soon...
-- Windows .exe version coming soon...
+- Windows .exe version coming soon (alongside a GUI)...

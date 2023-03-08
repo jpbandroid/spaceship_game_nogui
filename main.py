@@ -14,10 +14,11 @@ won = False             #Whether the player has won
 power = 500             #The amount of power the spaceship has
 fuel = 500              #The amount of fuel the player has in the flamethrower
 locked = 0              #The module that has been locked by the player
-queen = 0               #Location of the queen
+main_npc = 0            #Location of Telium (Main Alien NPC)
 vent_shafts = []        #Location of the ventilation shaft enterances
 info_panels = []        #Location of the information panels
 workers = []            #Location of the workers/NPCs
+fuel_cells = []         #Location of extra fuel cells
 
 #Procedure/Function declarations
 
@@ -41,7 +42,7 @@ def get_modules_from(module):
 
 #Outputs where user is in the game
 def output_module():
-        global module
+        global module, fuel
         print()
         print("-----------------------------------------------------------------------------------------------------------------------------------------------")
         print()
@@ -49,12 +50,19 @@ def output_module():
         print()
         if module == main_npc:
                         print("You are in the same module as the Main Alien NPC (Telium)")
-        elif module == vent_shafts[0] or module == vent_shafts[1] or module == vent_shafts[2]:
+        if module == vent_shafts[0] or module == vent_shafts[1] or module == vent_shafts[2]:
                 print("You are inside a vent shaft. (sus...)")
-        elif module == info_panels[0] or module == info_panels[1]:
+        if module == info_panels[0] or module == info_panels[1]:
                 print("You are inside a module with an info panel.")
-        elif module == workers[0] or module == workers[1] or module == workers[2]:
+        if module == workers[0] or module == workers[1] or module == workers[2]:
                 print("You are in the same module as worker NPC.")
+        if module in fuel_cells:
+                print("There are fuel cells in this module.\nRefuelling your flamethrower...")
+                time.sleep(1)
+                print("Fuel before:", fuel)
+                fuel = fuel + random.randint(10, 50)
+                print("Fuel now:", fuel)
+                fuel_cells.remove(module)
 
 #Outputs to the user where they can move
 def output_moves():
@@ -85,6 +93,10 @@ def spawn_npcs():
         for counter in range(0,3):
                 i = i+1
                 workers.append(module_set[i])
+
+        for counter in range(0,2):
+                i = i+1
+                fuel_cells.append(module_set[i])
 
 #Checks the ventilation shafts
 def check_vent_shafts():
@@ -155,13 +167,19 @@ def get_action():
 
 #Intuition functionality
 def intuition():
-        global possible_moves, workers, vent_shafts
+        global possible_moves, workers, vent_shafts, info_panels, main_npc, fuel_cells
         #Check what is in each of the possible moves
         for connected_module in possible_moves:
                 if connected_module in workers:
                         print("I can hear something scuttling!")
                 if connected_module in vent_shafts:
                         print("I can feel cold air!")
+                if connected_module in info_panels:
+                        print("There's an info panel nearby!!")
+                if connected_module == main_npc:
+                        print("I can hear Telium...")
+                if connected_module in fuel_cells:
+                        print("I can smell some petrol...")
 
 #Movement of Worker Aliens
 def worker_aliens():
@@ -252,13 +270,14 @@ def move_mainNPC():
 
 #Main program starts here
 
-print('Spaceship Game version 2.3.5\n07/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
+print('Spaceship Game version 2.4.2\n08/03/2023\nLoad instructions using INSTRUCTIONS command...\n')
 
 spawn_npcs()
 print("Main Alien NPC is located in module: " , main_npc)
 print("(sus) vents are located in modules: " , vent_shafts)
 print("Info panels are located in modules: " , info_panels)
 print("Worker NPC are located in modules:", workers)
+print("Fuel cells are located in modules:", fuel_cells)
 while alive and not won:
         load_module()
         check_vent_shafts()
