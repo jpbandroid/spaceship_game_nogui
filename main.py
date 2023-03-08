@@ -51,7 +51,7 @@ def output_module():
         if module == main_npc:
                         print("You are in the same module as the Main Alien NPC (Telium)")
         if module == vent_shafts[0] or module == vent_shafts[1] or module == vent_shafts[2]:
-                print("You are inside a vent shaft. (...)")
+                print("You are inside a vent shaft.")
         if module == info_panels[0] or module == info_panels[1]:
                 print("You are inside a module with an info panel.")
         if module == workers[0] or module == workers[1] or module == workers[2]:
@@ -259,13 +259,13 @@ def move_mainNPC():
                                 #print("... and has escaped.")
                         print("We can hear scuttling in the vent shafts...")
                         valid_move = False
-                        #The Main Alien NPC is unable to land in a module with another () vent shaft...
+                        #The Main Alien NPC is unable to land in a module with another vent shaft...
                         while valid_move == False:
                                 valid_move = True
                                 main_npc = random.randint(1, num_modules)
                                 if main_npc in vent_shafts:
                                         valid_move = False
-                        #The Main Alien NPC always stops moving after travelling through the () vent shaft
+                        #The Main Alien NPC always stops moving after travelling through the vent shaft
                         moves_to_make = 0
 
 #Main program starts here
